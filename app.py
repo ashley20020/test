@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 # MySQL Configuration
 db_config = {
-    'user': 'u89108_cKnDhNL8Yj',
-    'password': '7qR5!B=+QfIlsZVB1D^Ujrx1',
+    'user': 'u77082_RdiYqKREydj',
+    'password': 'CVC7qXF^hY+zzEkHcj!Dd^m2',
     'host': '54.37.204.19',
-    'database': 's89108_Shifts'
+    'database': 's77082_Punishments'
 }
 
 # Route for displaying bans
@@ -87,4 +87,4 @@ def display_punishments():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='syntalebans.info')
