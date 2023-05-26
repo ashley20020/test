@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntale Bans</title>
+    <style>
+        /* CSS styles here */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-form label {
+            font-weight: bold;
+            margin-right: 10px;
+            line-height: 35px;
+            color: #fff;
+        }
+
+        .search-form input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: #3498db;
+        }
+
+        .search-form button[type="submit"] {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .bans-table {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .bans-table table {
+            width: 100%;
+        }
+
+        .bans-table thead {
+            background-color: #222;
+        }
+
+        .bans-table th,
+        .bans-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+
+        .bans-table th {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .bans-table tbody tr:nth-child(even) {
+            background-color: #444;
+        }
+
+        .bans-table tbody tr:hover {
+            background-color: #555;
+        }
+
+        .steam-link {
+            display: flex;
+            justify-content: center;
+        }
+
+        .steam-link a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .steam-link a:hover {
+            background-color: #2980b9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Syntale Bans</h1>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/punishments'">Go to Punishments</button>
+    </div>
+
+    <div class="counter">
+        People Banned Today: <span>{{ bans_today }}</span>
+    </div>
+
+    <!-- Search form -->
+    <form class="search-form" action="/" method="get">
+        <label for="steamid">Enter SteamID:</label>
+        <input type="text" id="steamid" name="steamid" value="{{ steamid }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="bans-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ban ID</th>
+                    <th>Player ID</th>
+                    <th>Player Name</th>
+                    <th>Punisher ID</th>
+                    <th>Ban Reason</th>
+                    <th>Ban Duration</th>
+                    <th>Ban Created</th>
+                    <th>Steam Profile</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ban in bans %}
+                <tr>
+                    <td>{{ ban[0] }}</td>
+                    <td>{{ ban[1] }}</td>
+                    <td>{{ ban[2] }}</td>
+                    <td>{{ ban[3] }}</td>
+                    <td>{{ ban[4] }}</td>
+                    <td>{{ ban[5] }}</td>
+                    <td>{{ ban[6] }}</td>
+                    <td class="steam-link"><a href="https://steamcommunity.com/profiles/{{ ban[1] }}/" target="_blank">Visit Steam</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
