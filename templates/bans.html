@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntale Bans</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="animated fadeIn">
+            <h1>Syntale Bans</h1>
+        </header>
+
+        <div class="section-header animated fadeIn">
+            <h2 class="section-title">Bans</h2>
+        </div>
+
+        <form action="/" method="get" class="search-form animated slideInFromLeft">
+            <label for="search-input">Search:</label>
+            <input type="text" id="search-input" name="search" placeholder="Enter Player ID or Steam Name">
+            <button type="submit">Search</button>
+        </form>
+
+        <table class="animated fadeIn">
+            <tr>
+                <th>Ban ID</th>
+                <th>Steam Name</th>
+                <th>Player ID</th>
+                <th>Punisher ID</th>
+                <th>Ban Type</th>
+                <th>Reason</th>
+                <th>Ban Created</th>
+                <th>Expire Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for ban in bans %}
+            <tr>
+                <td>{{ ban[0] }}</td>
+                <td class="steam-name">{{ ban[8] }}</td>
+                <td>{{ ban[1] }}</td>
+                <td>{{ ban[2] }}</td>
+                <td>{{ ban[3] }}</td>
+                <td>{{ ban[4] }}</td>
+                <td>{{ ban[5] }}</td>
+                <td>{{ ban[6] }}</td>
+                <td class="ban-status">
+                    {% if ban[7] == 0 %}
+                        Currently Banned
+                    {% elif ban[7] == 1 %}
+                        Currently Unbanned
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="https://steamcommunity.com/profiles/{{ ban[1] }}" target="_blank" class="view-steam-btn animated fadeIn">View Steam Page</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
